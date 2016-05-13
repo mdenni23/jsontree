@@ -34,7 +34,7 @@ func New(o *Options) JSONTree {
 		o.NumChars = 40
 	}
 
-	return &printTree{
+	return &jsonTree{
 		truncate: o.Truncate,
 		numChars: o.NumChars,
 	}
