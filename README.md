@@ -30,6 +30,7 @@ Go package for printing JSON as a Tree in the terminal.
 ## type JSONTree
 ``` go
 type JSONTree interface {
+    UnmarshalPrint([]byte) error
     Print(interface{})
 }
 ```
