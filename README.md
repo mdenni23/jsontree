@@ -55,11 +55,14 @@ New constructor.
 ## type Options
 ``` go
 type Options struct {
-    // Truncate characters.
+    // Truncate characters (Optional).
     Truncate bool
 
-    // Number of characters before they are truncated.
+    // Number of characters before they are truncated (Optional defaults to 40).
     NumChars int
+
+    // Don't print values in tree (Optional).
+    NoValues bool
 }
 ```
 Options structure.

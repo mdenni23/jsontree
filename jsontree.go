@@ -12,16 +12,20 @@ type JSONTree interface {
 
 // Options structure.
 type Options struct {
-	// Truncate characters.
+	// Truncate characters (Optional).
 	Truncate bool
 
-	// Number of characters before they are truncated.
+	// Number of characters before they are truncated (Optional defaults to 40).
 	NumChars int
+
+	// Don't print values in tree (Optional).
+	NoValues bool
 }
 
 type jsonTree struct {
 	truncate bool
 	numChars int
+	noValues bool
 
 	nMaps int
 	nArr  int
@@ -37,6 +41,7 @@ func New(o *Options) JSONTree {
 	return &jsonTree{
 		truncate: o.Truncate,
 		numChars: o.NumChars,
+		noValues: o.NoValues,
 	}
 }
 
@@ -80,13 +85,15 @@ func (t *jsonTree) traverse(v interface{}, indent string) {
 		t.traverseMapStr(v, indent)
 		t.nArr++
 	default:
-		s := fmt.Sprintf("%v", v)
+		if !t.noValues {
+			s := fmt.Sprintf("%v", v)
 
-		if t.truncate && len(s) > t.numChars {
-			s = s[0:t.numChars] + "..."
+			if t.truncate && len(s) > t.numChars {
+				s = s[0:t.numChars] + "..."
+			}
+
+			fmt.Printf(": %s", s)
 		}
-
-		fmt.Printf(": %s", s)
 		t.nKeys++
 	}
 }
