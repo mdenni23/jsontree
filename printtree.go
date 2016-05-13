@@ -5,10 +5,12 @@ import (
 	"sort"
 )
 
+// PrintTree interface.
 type PrintTree interface {
 	Print(interface{})
 }
 
+// Options structure.
 type Options struct {
 	// Truncate characters.
 	Truncate bool
@@ -26,7 +28,8 @@ type printTree struct {
 	nKeys int
 }
 
-func New(o *Options) *printTree {
+// New constructor.
+func New(o *Options) *PrintTree {
 	if o.NumChars == 0 {
 		o.NumChars = 40
 	}
@@ -52,7 +55,7 @@ func (t *printTree) traverseArray(in []interface{}, indent string) {
 func (t *printTree) traverseMapStr(in map[string]interface{}, indent string) {
 	var a []string
 
-	for k, _ := range in {
+	for k := range in {
 		a = append(a, k)
 	}
 	sort.Strings(a)
