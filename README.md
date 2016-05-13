@@ -1,5 +1,23 @@
 [![GoDoc](https://godoc.org/github.com/mickep76/jsontree?status.svg)](https://godoc.org/github.com/mickep76/jsontree)
 
+# jsontree - JSON Tree
+
+Go package for printing JSON as a Tree in the terminal.
+
+**Example:**
+
+```bash
+/
+└── 0
+    ├── Architecture: amd64
+    ├── Author:
+    ├── Comment:
+    ├── Config
+    │   ├── AttachStderr: false
+    │   ├── AttachStdin: false
+...
+```
+
 # jsontree
     import "github.com/mickep76/jsontree"
 
