@@ -1,12 +1,12 @@
-package printtree
+package jsontree
 
 import (
 	"fmt"
 	"sort"
 )
 
-// PrintTree interface.
-type PrintTree interface {
+// JSONTree interface.
+type JSONTree interface {
 	Print(interface{})
 }
 
@@ -19,7 +19,7 @@ type Options struct {
 	NumChars int
 }
 
-type printTree struct {
+type jsonTree struct {
 	truncate bool
 	numChars int
 
@@ -29,7 +29,7 @@ type printTree struct {
 }
 
 // New constructor.
-func New(o *Options) *PrintTree {
+func New(o *Options) JSONTree {
 	if o.NumChars == 0 {
 		o.NumChars = 40
 	}
@@ -40,7 +40,7 @@ func New(o *Options) *PrintTree {
 	}
 }
 
-func (t *printTree) traverseArray(in []interface{}, indent string) {
+func (t *jsonTree) traverseArray(in []interface{}, indent string) {
 	for i, v := range in {
 		if i == len(in)-1 {
 			fmt.Printf("\n%s└── %d", indent, i)
@@ -52,7 +52,7 @@ func (t *printTree) traverseArray(in []interface{}, indent string) {
 	}
 }
 
-func (t *printTree) traverseMapStr(in map[string]interface{}, indent string) {
+func (t *jsonTree) traverseMapStr(in map[string]interface{}, indent string) {
 	var a []string
 
 	for k := range in {
@@ -71,7 +71,7 @@ func (t *printTree) traverseMapStr(in map[string]interface{}, indent string) {
 	}
 }
 
-func (t *printTree) traverse(v interface{}, indent string) {
+func (t *jsonTree) traverse(v interface{}, indent string) {
 	switch v := v.(type) {
 	case []interface{}:
 		t.traverseArray(v, indent)
@@ -91,7 +91,9 @@ func (t *printTree) traverse(v interface{}, indent string) {
 	}
 }
 
-func (t *printTree) Print(v interface{}) {
+// Include Unmarshal
+
+func (t *jsonTree) Print(v interface{}) {
 	fmt.Printf("/")
 	t.traverse(v, "")
 	fmt.Printf("\n\n%d objects, %d arrays, %d keys\n", t.nMaps, t.nArr, t.nKeys)

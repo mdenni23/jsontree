@@ -1,4 +1,4 @@
-NAME=printtree
+NAME=jsontree
 IMPORT=github.com/mickep76/${NAME}
 
 all: test readme

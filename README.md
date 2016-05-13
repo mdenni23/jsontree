@@ -1,10 +1,35 @@
-[![GoDoc](https://godoc.org/github.com/mickep76/printtree?status.svg)](https://godoc.org/github.com/mickep76/printtree)
+[![GoDoc](https://godoc.org/github.com/mickep76/jsontree?status.svg)](https://godoc.org/github.com/mickep76/jsontree)
 
-# printtree
-    import "github.com/mickep76/printtree"
+# jsontree
+    import "github.com/mickep76/jsontree"
 
 
 
+
+
+
+
+## type JSONTree
+``` go
+type JSONTree interface {
+    Print(interface{})
+}
+```
+JSONTree interface.
+
+
+
+
+
+
+
+
+
+### func New
+``` go
+func New(o *Options) JSONTree
+```
+New constructor.
 
 
 
@@ -27,31 +52,6 @@ Options structure.
 
 
 
-
-
-
-
-## type PrintTree
-``` go
-type PrintTree interface {
-    Print(interface{})
-}
-```
-PrintTree interface.
-
-
-
-
-
-
-
-
-
-### func New
-``` go
-func New(o *Options) *PrintTree
-```
-New constructor.
 
 
 
