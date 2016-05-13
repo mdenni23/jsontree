@@ -1,12 +1,14 @@
 package jsontree
 
 import (
+	"encoding/json"
 	"fmt"
 	"sort"
 )
 
 // JSONTree interface.
 type JSONTree interface {
+	UnmarshalPrint([]byte) error
 	Print(interface{})
 }
 
@@ -98,8 +100,18 @@ func (t *jsonTree) traverse(v interface{}, indent string) {
 	}
 }
 
-// Include Unmarshal
+// Unmarshal JSON document and print tree.
+func (t *jsonTree) UnmarshalPrint(b []byte) error {
+	var d interface{}
+	if err := json.Unmarshal(b, &d); err != nil {
+		return err
+	}
 
+	t.Print(d)
+	return nil
+}
+
+// Print tree.
 func (t *jsonTree) Print(v interface{}) {
 	fmt.Printf("/")
 	t.traverse(v, "")
