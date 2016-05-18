@@ -6,6 +6,12 @@ import (
 	"sort"
 )
 
+const (
+	SortNone = iota
+	SortAsc
+	SortDesc
+)
+
 // JSONTree interface.
 type JSONTree interface {
 	UnmarshalPrint([]byte) error
@@ -22,12 +28,16 @@ type Options struct {
 
 	// Don't print values in tree (Optional).
 	NoValues bool
+
+	// Sorting either None, Asc or Desc (Optional).
+	Sort int
 }
 
 type jsonTree struct {
 	truncate bool
 	numChars int
 	noValues bool
+	sort     int
 
 	nMaps int
 	nArr  int
@@ -44,6 +54,7 @@ func New(o *Options) JSONTree {
 		truncate: o.Truncate,
 		numChars: o.NumChars,
 		noValues: o.NoValues,
+		sort:     o.Sort,
 	}
 }
 
@@ -65,7 +76,20 @@ func (t *jsonTree) traverseMapStr(in map[string]interface{}, indent string) {
 	for k := range in {
 		a = append(a, k)
 	}
-	sort.Strings(a)
+
+	// For any other value assume SortNone
+	switch t.sort {
+	case SortAsc:
+		sort.Strings(a)
+	case SortDesc:
+		sort.Strings(a)
+
+		var b []string
+		for i := len(a) - 1; i >= 0; i-- {
+			b = append(b, a[i])
+		}
+		a = b
+	}
 
 	for i, k := range a {
 		if i == len(in)-1 {
