@@ -24,6 +24,16 @@ Go package for printing JSON as a Tree in the terminal.
 
 
 
+## Constants
+``` go
+const (
+    SortNone = iota
+    SortAsc
+    SortDesc
+)
+```
+Sort options.
+
 
 
 
@@ -64,6 +74,9 @@ type Options struct {
 
     // Don't print values in tree (Optional).
     NoValues bool
+
+    // Sorting either None, Asc or Desc (Optional).
+    Sort int
 }
 ```
 Options structure.

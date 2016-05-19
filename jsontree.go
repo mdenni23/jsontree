@@ -6,6 +6,7 @@ import (
 	"sort"
 )
 
+// Sort options.
 const (
 	SortNone = iota
 	SortAsc
