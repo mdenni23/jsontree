@@ -32,6 +32,9 @@ type Options struct {
 
 	// Sorting either None, Asc or Desc (Optional).
 	Sort int
+
+	// Print summary
+	Summary bool
 }
 
 type jsonTree struct {
@@ -39,6 +42,7 @@ type jsonTree struct {
 	numChars int
 	noValues bool
 	sort     int
+	summary  bool
 
 	nMaps int
 	nArr  int
@@ -56,6 +60,7 @@ func New(o *Options) JSONTree {
 		numChars: o.NumChars,
 		noValues: o.NoValues,
 		sort:     o.Sort,
+		summary:  o.Summary,
 	}
 }
 
@@ -140,5 +145,9 @@ func (t *jsonTree) UnmarshalPrint(b []byte) error {
 func (t *jsonTree) Print(v interface{}) {
 	fmt.Printf("/")
 	t.traverse(v, "")
-	fmt.Printf("\n\n%d objects, %d arrays, %d keys\n", t.nMaps, t.nArr, t.nKeys)
+	if t.summary {
+		fmt.Printf("\n\n%d objects, %d arrays, %d keys\n", t.nMaps, t.nArr, t.nKeys)
+	} else {
+		fmt.Printf("\n")
+	}
 }
