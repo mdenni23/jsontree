@@ -18,13 +18,29 @@ Go package for printing JSON as a Tree in the terminal.
 ...
 ```
 
+
 # jsontree
-    import "github.com/mickep76/jsontree"
+`import "github.com/mickep76/jsontree"`
+
+* [Overview](#pkg-overview)
+* [Index](#pkg-index)
+
+## <a name="pkg-overview">Overview</a>
 
 
 
+## <a name="pkg-index">Index</a>
+* [Constants](#pkg-constants)
+* [type JSONTree](#JSONTree)
+  * [func New(o *Options) JSONTree](#New)
+* [type Options](#Options)
 
-## Constants
+
+#### <a name="pkg-files">Package files</a>
+[jsontree.go](/src/target/jsontree.go) 
+
+
+## <a name="pkg-constants">Constants</a>
 ``` go
 const (
     SortNone = iota
@@ -37,7 +53,8 @@ Sort options.
 
 
 
-## type JSONTree
+
+## <a name="JSONTree">type</a> [JSONTree](/src/target/jsontree.go?s=149:226#L17)
 ``` go
 type JSONTree interface {
     UnmarshalPrint([]byte) error
@@ -52,9 +69,7 @@ JSONTree interface.
 
 
 
-
-
-### func New
+### <a name="New">func</a> [New](/src/target/jsontree.go?s=724:753#L53)
 ``` go
 func New(o *Options) JSONTree
 ```
@@ -63,7 +78,8 @@ New constructor.
 
 
 
-## type Options
+
+## <a name="Options">type</a> [Options](/src/target/jsontree.go?s=250:569#L23)
 ``` go
 type Options struct {
     // Truncate characters (Optional).
@@ -77,12 +93,12 @@ type Options struct {
 
     // Sorting either None, Asc or Desc (Optional).
     Sort int
+
+    // Print summary
+    Summary bool
 }
 ```
 Options structure.
-
-
-
 
 
 
