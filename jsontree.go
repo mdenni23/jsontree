@@ -65,6 +65,7 @@ func New(o *Options) JSONTree {
 }
 
 func (t *jsonTree) traverseArray(in []interface{}, indent string) {
+	fmt.Println("CHECK")
 	for i, v := range in {
 		if i == len(in)-1 {
 			fmt.Printf("\n%s└── %d", indent, i)
