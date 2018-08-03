@@ -77,6 +77,7 @@ func (t *jsonTree) traverseArray(in []interface{}, indent string) {
 }
 
 func (t *jsonTree) traverseMapStr(in map[string]interface{}, indent string) {
+	fmt.Println("CHECK")
 	var a []string
 
 	for k := range in {
